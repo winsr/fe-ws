@@ -46,8 +46,8 @@ function Chat({ username, roomname, socket }) {
         {messages.map((i, index) => {
           if (i.username === username) {
             return (
-              <div className="message" key={index}>
-                <p>{i.text}</p>
+              <div className={`message ${index}`} key={index}>
+                <p className={`message-text ${index}`}>{i.text}</p>
                 <span>{i.username}</span>
               </div>
             )
@@ -64,6 +64,7 @@ function Chat({ username, roomname, socket }) {
       </div>
       <div className="send">
         <input
+          className="form-input-text"
           placeholder="enter your message"
           value={text}
           onChange={(e) => setText(e.target.value)}
@@ -73,7 +74,9 @@ function Chat({ username, roomname, socket }) {
             }
           }}
         ></input>
-        <button onClick={sendData}>Send</button>
+        <button className="form-submit-text" onClick={sendData}>
+          Send
+        </button>
       </div>
     </div>
   )

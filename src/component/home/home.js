@@ -16,17 +16,22 @@ function HomePage({ socket }) {
     <div className="homepage">
       <h1>Welcome to ChatApp</h1>
       <input
+        className="form-username"
+        autoFocus
         placeholder="Input your user name"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
       ></input>
       <input
+        className="form-room"
         placeholder="Input the room name"
         value={roomname}
         onChange={(e) => setRoomname(e.target.value)}
       ></input>
       <Link to={`/chat/${roomname}/${username}`}>
-        <button onClick={sendData}>Join</button>
+        <button className="form-button" onClick={sendData}>
+          Join
+        </button>
       </Link>
     </div>
   )
