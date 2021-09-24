@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import io from "socket.io-client"
+
+import Chat from "./component/chat/chat"
+import Home from "./component/home/home"
+
+import "./App.scss"
+
+const socket = io.connect("/")
+
+function Appmain(props) {
+  return (
+    <>
+      <div className="right">
+        <Chat
+          username={props.match.params.username}
+          roomname={props.match.params.roomname}
+          socket={socket}
+        />
+      </div>
+    </>
+  )
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Router>
+      <div className="App">
+        <Switch>
+          <Route path="/" exact>
+            <Home socket={socket} /> {/* ROOT PATH */}
+          </Route>
+          <Route path="/chat/:roomname/:username" component={Appmain} />
+        </Switch>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App
