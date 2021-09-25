@@ -1,0 +1,16 @@
+name: Actions
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - run: echo "the job automatically triggered by a ${{ github.event_name }} event"
+      - uses: actions/checkout@v1
+      - name: list files in the repo
+        run: ls ${{ github.workspace }}
