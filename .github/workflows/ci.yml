@@ -1,13 +1,15 @@
-name: Actions
+name: Continuous Integration
 
 on:
-  push:
+  pull_request:
     branches:
-      - master
+      - develop
+      - alpha
+      - main
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
       - run: echo "the job automatically triggered by a ${{ github.event_name }} event"
