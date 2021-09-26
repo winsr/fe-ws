@@ -1,13 +1,10 @@
-// import { process } from "../../store/action/index"
 import React, { useState, useEffect, useRef } from "react"
-// import { useDispatch } from "react-redux"
 
 import "./chat.scss"
 
 function Chat({ username, roomname, socket }) {
   const [text, setText] = useState("")
   const [messages, setMessages] = useState([])
-  // const dispatch = useDispatch()
 
   useEffect(() => {
     socket.on("message", (data) => {
